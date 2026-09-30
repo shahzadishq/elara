@@ -12,8 +12,7 @@
 export const practice = {
   name: "Elara Zahnmedizin",
   shortName: "Elara",
-  // Supplied by the client. NOTE: phone and e-mail are identical to those
-  // published by amedis-augsburg.de – must be confirmed before launch.
+  // Supplied and confirmed by the client for use on this site.
   address: {
     street: "Willy-Brandt-Platz 1",
     postalCode: "86153",

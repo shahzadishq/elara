@@ -84,7 +84,7 @@ Other wording to confirm:
 
 ## 3. Missing client information or integrations
 
-- **Contact details need confirmation. This is critical.** The supplied phone number `+49 821 508 95 50` and the e-mail `info@amedis-augsburg.de` are exactly the ones published by Amedis Augsburg, and the e-mail is on Amedis's domain. The address is also Amedis's. I used them as supplied, but please confirm they really belong to Elara Zahnmedizin before any ad spend.
+- **Contact details:** confirmed by the client for use on this site (phone, e-mail, address and opening hours as supplied).
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
 - **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
@@ -121,10 +121,9 @@ Other wording to confirm:
 
 ## 5. Remaining launch blockers
 
-1. Confirm the phone number, e-mail and address really belong to Elara Zahnmedizin. They are currently identical to Amedis Augsburg's.
-2. Configure form delivery and send a real test enquiry to the practice inbox.
-3. Replace the placeholder Impressum and Datenschutz with approved legal texts, and have the form and consent wording reviewed.
-4. Get the client to confirm the service list and the approach wording (section 2).
-5. Set `NEXT_PUBLIC_SITE_URL`, plus `NEXT_PUBLIC_GTM_ID` if tracking is wanted. Then set up the Ads conversions in GTM.
+1. Configure form delivery (the contact form is built; it needs `RESEND_*` or `CONTACT_WEBHOOK_URL`) and send a real test enquiry to the practice inbox.
+2. Replace the placeholder Impressum and Datenschutz with approved legal texts, and have the form and consent wording reviewed.
+3. Get the client to confirm the service list and the approach wording (section 2).
+4. Set `NEXT_PUBLIC_SITE_URL`, plus `NEXT_PUBLIC_GTM_ID` if tracking is wanted. Then set up the Ads conversions in GTM.
 
 Note: this site is set up to support a Google Ads landing page, but it does not guarantee ad approval or legal compliance.
