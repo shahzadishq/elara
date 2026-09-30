@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <title>Elara monogram</title>
+  <path d="M84 27C77 20 69 17 59 17 35 17 18 35 18 60s17 43 41 43c13 0 23-5 31-15" fill="none" stroke="#103f72" stroke-width="9" stroke-linecap="round"/>
+  <path d="M39 44h43M39 60h33M39 76h43" fill="none" stroke="#103f72" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="93" cy="76" r="5" fill="#20a8b2"/>
+</svg>

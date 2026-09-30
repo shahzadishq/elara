@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Palette derived from the Elara logo: deep navy #103f72 and teal #20a8b2,
+   balanced with warm ivory neutrals. */
+@theme {
+  --color-navy-950: #071f3a;
+  --color-navy-900: #0b2d52;
+  --color-navy-800: #103f72;
+  --color-navy-700: #1b5189;
+  --color-navy-100: #e3ebf4;
+  --color-teal-300: #7fd3d8;
+  --color-teal-500: #20a8b2;
+  --color-teal-700: #0b6f78;
+  --color-ivory: #faf8f4;
+  --color-sand: #f2eee7;
+  --color-sand-dark: #e7e0d5;
+  --color-line: #e2dbcf;
+  --color-ink: #1b2734;
+  --color-muted: #525e6a;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+
+  --shadow-soft: 0 1px 2px rgb(16 63 114 / 0.04), 0 12px 32px -12px rgb(16 63 114 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(16 63 114 / 0.05), 0 24px 48px -20px rgb(16 63 114 / 0.28);
+
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-teal-300);
+  color: var(--color-navy-950);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-teal-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2.5 text-[0.78rem] font-bold tracking-[0.16em] text-teal-700 uppercase;
+  &::before {
+    content: "";
+    @apply block h-2 w-2 rounded-full bg-teal-500;
+  }
+}
+
+@utility heading-xl {
+  @apply font-serif text-[2.35rem] leading-[1.08] font-normal tracking-[-0.015em] text-navy-900 sm:text-5xl lg:text-[3.3rem] xl:text-[3.6rem];
+}
+@utility heading-lg {
+  @apply font-serif text-[2rem] leading-[1.12] font-normal tracking-[-0.01em] text-navy-900 sm:text-[2.6rem] lg:text-[2.9rem];
+}
+
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-semibold transition duration-200 ease-out;
+}
+@utility btn-primary {
+  @apply btn bg-navy-800 text-white shadow-[0_8px_20px_-8px_rgb(16_63_114/0.6)] hover:-translate-y-px hover:bg-navy-900 active:translate-y-0;
+}
+@utility btn-light {
+  @apply btn bg-white text-navy-900 hover:-translate-y-px hover:bg-ivory active:translate-y-0;
+}
+@utility btn-outline {
+  @apply btn border border-navy-800/25 text-navy-800 hover:border-navy-800 hover:bg-white;
+}
+@utility link-underline {
+  @apply underline decoration-teal-500/60 decoration-2 underline-offset-4 transition-colors hover:decoration-teal-500;
+}
