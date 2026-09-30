@@ -19,7 +19,6 @@
   --color-muted: #525e6a;
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
 
   --shadow-soft: 0 1px 2px rgb(16 63 114 / 0.04), 0 12px 32px -12px rgb(16 63 114 / 0.18);
   --shadow-lift: 0 2px 4px rgb(16 63 114 / 0.05), 0 24px 48px -20px rgb(16 63 114 / 0.28);
@@ -82,19 +81,42 @@ body {
   @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
 }
 
+/* Pill label above headings */
 @utility eyebrow {
-  @apply inline-flex items-center gap-2.5 text-[0.78rem] font-bold tracking-[0.16em] text-teal-700 uppercase;
+  @apply inline-flex items-center gap-2 rounded-full bg-teal-500/12 px-3.5 py-1.5 text-[0.74rem] font-bold tracking-[0.14em] text-teal-700 uppercase;
   &::before {
     content: "";
-    @apply block h-2 w-2 rounded-full bg-teal-500;
+    @apply block h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500;
+  }
+}
+@utility eyebrow-dark {
+  @apply eyebrow bg-white/10 text-teal-300;
+  &::before {
+    @apply bg-teal-300;
+  }
+}
+
+/* Hand-drawn style underline for key words in headings (<Rich> *word* markup) */
+@utility hl {
+  @apply relative inline-block whitespace-nowrap;
+  &::after {
+    content: "";
+    position: absolute;
+    left: -0.04em;
+    right: -0.04em;
+    bottom: -0.12em;
+    height: 0.28em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 11 C 50 4, 120 3, 197 8' fill='none' stroke='%2320a8b2' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E")
+      no-repeat center / 100% 100%;
+    z-index: -1;
   }
 }
 
 @utility heading-xl {
-  @apply font-serif text-[2.35rem] leading-[1.08] font-normal tracking-[-0.015em] text-navy-900 sm:text-5xl lg:text-[3.3rem] xl:text-[3.6rem];
+  @apply isolate text-[2.2rem] leading-[1.08] font-extrabold tracking-[-0.03em] text-navy-900 sm:text-[2.9rem] lg:text-[3.1rem] xl:text-[3.4rem];
 }
 @utility heading-lg {
-  @apply font-serif text-[2rem] leading-[1.12] font-normal tracking-[-0.01em] text-navy-900 sm:text-[2.6rem] lg:text-[2.9rem];
+  @apply isolate text-[1.85rem] leading-[1.14] font-extrabold tracking-[-0.025em] text-navy-900 sm:text-[2.3rem] lg:text-[2.6rem];
 }
 
 @utility btn {

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Newsreader } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { images, integrations, practice, seo } from "@/content/site";
 import { ConsentManager } from "@/components/ConsentManager";
@@ -9,14 +9,6 @@ const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
-});
-
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
 });
 
 const siteUrl = integrations.siteUrl;
@@ -57,14 +49,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf8f4",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="de" className={`${manrope.variable} ${newsreader.variable} antialiased`}>
+    <html lang="de" className={`${manrope.variable} antialiased`}>
       <body className="min-h-dvh">
         {children}
         <AnalyticsListener />

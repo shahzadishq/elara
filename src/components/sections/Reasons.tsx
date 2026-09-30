@@ -1,5 +1,6 @@
 import { integrations, reasons } from "@/content/site";
 import { AppointmentLink, ReviewBadge } from "../Cta";
+import { Rich } from "../Rich";
 
 export function Reasons() {
   return (
@@ -31,9 +32,9 @@ export function Reasons() {
 
       <div className="container-page relative grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <p className="eyebrow text-teal-300 before:bg-teal-300">{reasons.eyebrow}</p>
-          <h2 id="gruende-title" className="mt-4 font-serif text-[2rem] leading-[1.12] text-balance sm:text-[2.6rem] lg:text-[2.9rem]">
-            {reasons.title}
+          <p className="eyebrow-dark">{reasons.eyebrow}</p>
+          <h2 id="gruende-title" className="heading-lg mt-4 text-balance text-white!">
+            <Rich text={reasons.title} />
           </h2>
           <p className="mt-5 max-w-md text-[1.05rem] leading-relaxed text-white/75">
             {reasons.intro}
@@ -47,10 +48,10 @@ export function Reasons() {
               key={item.title}
               className="bg-navy-900 p-7 transition-colors duration-300 hover:bg-navy-800 sm:p-8"
             >
-              <span className="font-serif text-lg text-teal-300 italic" aria-hidden="true">
+              <span className="text-sm font-extrabold tracking-[0.14em] text-teal-300" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 text-lg font-semibold">
+              <h3 className="mt-3 text-lg font-extrabold">
                 {item.title}
                 <ReviewBadge show={integrations.reviewMode && !item.confirmed} />
               </h3>

@@ -65,10 +65,10 @@ export function Header() {
         // No backdrop-filter while the menu is open: it would become the containing
         // block for the fixed-position menu panel and clip it to the header.
         open
-          ? "border-b border-line bg-ivory"
+          ? "border-b border-line bg-white"
           : scrolled
-            ? "border-b border-line/80 bg-ivory/95 shadow-[0_6px_24px_-18px_rgb(16_63_114/0.5)] backdrop-blur-md"
-            : "border-b border-transparent bg-ivory"
+            ? "border-b border-line/80 bg-white/95 shadow-[0_6px_24px_-18px_rgb(16_63_114/0.5)] backdrop-blur-md"
+            : "border-b border-transparent bg-white"
       }`}
     >
       <a
@@ -132,7 +132,7 @@ export function Header() {
         id="mobile-menu"
         ref={panelRef}
         hidden={!open}
-        className="fixed inset-x-0 top-[4.25rem] bottom-0 overflow-y-auto border-t border-line bg-ivory lg:hidden"
+        className="fixed inset-x-0 top-[4.25rem] bottom-0 overflow-y-auto border-t border-line bg-white lg:hidden"
       >
         <nav aria-label="Mobile Navigation" className="container-page py-6">
           <ul className="divide-y divide-line border-y border-line">
@@ -141,7 +141,7 @@ export function Header() {
                 <a
                   href={item.href}
                   onClick={() => close(false)}
-                  className="flex items-center justify-between py-4 font-serif text-2xl text-navy-900"
+                  className="flex items-center justify-between py-4 text-2xl font-extrabold tracking-tight text-navy-900"
                 >
                   {item.label}
                   <span aria-hidden="true" className="text-teal-500">→</span>
@@ -180,7 +180,7 @@ export function MobileActionBar() {
   return (
     <div
       inert={hidden}
-      className={`fixed inset-x-0 bottom-0 z-40 transition-transform duration-300 ${hidden ? "translate-y-full" : ""} border-t border-line bg-ivory/95 px-3 pt-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden`}
+      className={`fixed inset-x-0 bottom-0 z-40 transition-transform duration-300 ${hidden ? "translate-y-full" : ""} border-t border-line bg-white/95 px-3 pt-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden`}
       aria-label="Schnellaktionen"
       role="region"
     >

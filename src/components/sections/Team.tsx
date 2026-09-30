@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { images, integrations, team } from "@/content/site";
 import { AppointmentLink } from "../Cta";
+import { Rich } from "../Rich";
 
 export function Team() {
   const img = images.teamGroup;
@@ -17,10 +18,10 @@ export function Team() {
             sizes="(min-width: 1216px) 1136px, 100vw"
             className="aspect-[4/3] h-auto w-full rounded-[1.75rem] object-cover object-[62%_center] shadow-soft sm:aspect-[16/9] lg:rounded-[2.25rem]"
           />
-          <div className="relative -mt-16 mx-3 rounded-[1.5rem] border border-line bg-ivory p-7 shadow-lift sm:mx-8 sm:p-9 lg:absolute lg:bottom-10 lg:left-10 lg:mx-0 lg:mt-0 lg:max-w-md">
+          <div className="relative -mt-16 mx-3 rounded-[1.5rem] border border-line bg-white p-7 shadow-lift sm:mx-8 sm:p-9 lg:absolute lg:bottom-10 lg:left-10 lg:mx-0 lg:mt-0 lg:max-w-md">
             <p className="eyebrow">{team.eyebrow}</p>
-            <h2 id="team-title" className="heading-lg mt-3 text-[1.9rem] text-balance sm:text-[2.2rem] lg:text-[2.3rem]">
-              {team.title}
+            <h2 id="team-title" className="heading-lg mt-3 text-balance">
+              <Rich text={team.title} />
             </h2>
             <p className="mt-4 leading-relaxed text-muted">{team.text}</p>
             <AppointmentLink location="team" className="btn-primary mt-6" />
@@ -31,7 +32,7 @@ export function Team() {
           <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {team.members.map((m) => (
               <li key={m.name}>
-                <h3 className="font-serif text-xl text-navy-900">{m.name}</h3>
+                <h3 className="text-xl font-extrabold text-navy-900">{m.name}</h3>
                 <p className="text-sm font-semibold text-teal-700">{m.role}</p>
                 {m.bio && <p className="mt-2 text-muted">{m.bio}</p>}
               </li>
