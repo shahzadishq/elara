@@ -9,7 +9,7 @@ import { Gallery } from "@/components/sections/Gallery";
 import { Process } from "@/components/sections/Process";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
-import { images, integrations, practice, seo } from "@/content/site";
+import { images, integrations, practice, seo, withBase } from "@/content/site";
 
 /** Dentist structured data – verified practice details only, no ratings/reviews. */
 function structuredData() {
@@ -36,8 +36,8 @@ function structuredData() {
     })),
     ...(url && {
       url,
-      image: `${url}${images.consultation.src}`,
-      logo: `${url}/images/elara-logo.svg`,
+      image: new URL(images.consultation.src, url).href,
+      logo: new URL(withBase("/images/elara-logo.svg"), url).href,
     }),
   };
 }

@@ -1,4 +1,4 @@
-import { legal, navigation, practice } from "@/content/site";
+import { legal, navigation, practice, withBase } from "@/content/site";
 import { Logo } from "./Logo";
 import { ConsentSettingsButton } from "./ConsentManager";
 
@@ -20,7 +20,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <a href={`/${item.href}`} className="hover:text-white">
+                  <a href={withBase(`/${item.href}`)} className="hover:text-white">
                     {item.label}
                   </a>
                 </li>

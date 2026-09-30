@@ -21,5 +21,15 @@ npm run lint
 | Legal page placeholders | `src/app/impressum`, `src/app/datenschutz` |
 | Images | `public/images/` |
 
+## Deployment
+
+- **Production (recommended):** any Node host (e.g. Vercel) with `npm run build && npm start`. The
+  built-in enquiry API (`/api/anfrage`) works there.
+- **Preview on GitHub Pages:** `.github/workflows/pages.yml` builds a static export on every push to
+  `main` and publishes it at `https://shahzadishq.github.io/elara/` (not indexed by search engines).
+  Pages has no server, so the enquiry form needs the repository variable `ENQUIRY_ENDPOINT`
+  (Settings → Secrets and variables → Actions → Variables), e.g. a Formspree form URL. Optional
+  variables: `BOOKING_URL`, `GTM_ID`. Repository Settings → Pages → Source must be **GitHub Actions**.
+
 Configuration via environment variables is documented in `.env.example`.
 Launch status, open items and content that needs client confirmation: see **[HANDOVER.md](./HANDOVER.md)**.

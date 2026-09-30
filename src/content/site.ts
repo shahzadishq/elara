@@ -9,6 +9,15 @@
  * Set NEXT_PUBLIC_REVIEW_MODE=1 to see these items highlighted on the page.
  */
 
+/**
+ * Path prefix when the site is served from a sub-path (e.g. GitHub Pages at
+ * /elara). Empty for a normal root deployment. Set at build time.
+ */
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "";
+
+/** Prefix a root-relative path with the base path. */
+export const withBase = (path: string) => `${basePath}${path}`;
+
 export const practice = {
   name: "Elara Zahnmedizin",
   shortName: "Elara",
@@ -53,6 +62,15 @@ export const integrations = {
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || null,
   /** Google Tag Manager container ID. Only loaded after consent. */
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || null,
+  /**
+   * Where the enquiry form posts to. Defaults to this site's own API route.
+   * Static hosting (e.g. GitHub Pages) has no server, so set this to an external
+   * form endpoint that accepts JSON and answers `{ "ok": true }` on success
+   * (e.g. a Formspree form URL).
+   */
+  enquiryEndpoint: process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT || withBase("/api/anfrage"),
+  /** Keeps preview deployments out of search engines. */
+  noindex: process.env.NEXT_PUBLIC_NOINDEX === "1",
   /** Highlights unconfirmed content for client review. Never enable in production. */
   reviewMode: process.env.NEXT_PUBLIC_REVIEW_MODE === "1",
 };
@@ -66,8 +84,8 @@ export const appointmentIsExternal = Boolean(integrations.bookingUrl);
  * Replace with the approved texts (or external URLs) before launch.
  */
 export const legal = {
-  impressumHref: "/impressum",
-  datenschutzHref: "/datenschutz",
+  impressumHref: withBase("/impressum/"),
+  datenschutzHref: withBase("/datenschutz/"),
   approved: false,
 };
 
@@ -81,31 +99,31 @@ export const navigation = [
 
 export const images = {
   consultation: {
-    src: "/images/elara-consultation.webp",
+    src: withBase("/images/elara-consultation.webp"),
     width: 1536,
     height: 1024,
     alt: "Ein Zahnarzt von Elara Zahnmedizin bespricht im Behandlungszimmer die nächsten Schritte mit einer Patientin",
   },
   teamGroup: {
-    src: "/images/elara-team.webp",
+    src: withBase("/images/elara-team.webp"),
     width: 1672,
     height: 941,
     alt: "Drei Mitglieder des Praxisteams von Elara Zahnmedizin im Empfangsbereich",
   },
   teamWalking: {
-    src: "/images/feature-team.webp",
+    src: withBase("/images/feature-team.webp"),
     width: 1100,
     height: 1375,
     alt: "Mitarbeitende von Elara Zahnmedizin im hellen Praxisflur",
   },
   reception: {
-    src: "/images/feature-reception.webp",
+    src: withBase("/images/feature-reception.webp"),
     width: 1100,
     height: 1375,
     alt: "Heller Empfangs- und Wartebereich mit Sesseln und geschwungenem Empfangstresen",
   },
   xray: {
-    src: "/images/feature-technology.webp",
+    src: withBase("/images/feature-technology.webp"),
     width: 1100,
     height: 1375,
     alt: "Röntgenraum der Praxis mit Blick ins Grüne",
