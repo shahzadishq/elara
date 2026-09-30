@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
-import { contact, legal, practice } from "@/content/site";
+import { contact, integrations, legal, practice } from "@/content/site";
 import { track } from "@/lib/analytics";
 import {
   MESSAGE_MAX,
@@ -70,9 +70,9 @@ export function ContactForm() {
     setStatus("submitting");
     setServerError("");
     try {
-      const res = await fetch("/api/anfrage", {
+      const res = await fetch(integrations.enquiryEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...values, website: fd.get("website") ?? "" }),
       });
       const data = (await res.json().catch(() => ({}))) as {

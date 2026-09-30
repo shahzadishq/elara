@@ -1,0 +1,65 @@
+name: Deploy preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      # GitHub Pages only serves static files, so the server-side enquiry API
+      # route cannot run there. The form posts to NEXT_PUBLIC_ENQUIRY_ENDPOINT
+      # instead (set the ENQUIRY_ENDPOINT repository variable, e.g. a Formspree
+      # form URL); without it the form shows its error state with the phone number.
+      - name: Remove server-only API route for static export
+        run: rm -rf src/app/api
+
+      - name: Build static site
+        run: npm run build
+        env:
+          STATIC_EXPORT: "1"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_ENQUIRY_ENDPOINT: ${{ vars.ENQUIRY_ENDPOINT }}
+          NEXT_PUBLIC_BOOKING_URL: ${{ vars.BOOKING_URL }}
+          NEXT_PUBLIC_GTM_ID: ${{ vars.GTM_ID }}
+          # Preview only: keep it out of search engines.
+          NEXT_PUBLIC_NOINDEX: "1"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -98,6 +98,12 @@ Other wording to confirm:
   - how the practice handles anxious patients.
 - **More photography (optional):** there are only 5 photos, so the gallery has two images. Treatment rooms or exterior shots would strengthen it.
 
+## Preview deployment (GitHub Pages)
+
+- Workflow `.github/workflows/pages.yml` deploys a static export on every push to `main` to `https://shahzadishq.github.io/elara/`. The preview is marked `noindex`.
+- Pages cannot run the server-side form API. Until the `ENQUIRY_ENDPOINT` repository variable points at an external form service (for example Formspree), the preview form shows its error state with the phone number. It never shows a fake success.
+- For the production launch, a Node host (for example Vercel) is recommended. There the built-in `/api/anfrage` route with Resend or a webhook works as described above.
+
 ## 4. Checks completed
 
 - `npm run build`, `tsc --noEmit` and `npm run lint` all pass cleanly.
@@ -114,6 +120,7 @@ Other wording to confirm:
   - No personal data appears in any analytics event.
   - Consent: with a test GTM ID, nothing loads before a choice or after "Ablehnen". GTM loads only after "Akzeptieren", and events then reach `dataLayer`.
   - The consent banner sits above the mobile action bar.
+- Static export for GitHub Pages was served locally under `/elara/` and checked at 375 and 1440 px: every image, font and script loads, there are no failed requests and no overflow, the menu works, legal pages and footer links resolve, and the form shows its error state when no endpoint is set.
 - Server-side validation was checked directly: invalid JSON is rejected, and so is invalid data.
 - Bugs found and fixed during testing:
   - The mobile menu was clipped behind the page because the header's backdrop-filter made it the containing block for the menu.

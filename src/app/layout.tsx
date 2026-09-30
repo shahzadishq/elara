@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       url: "/",
       images: [
         {
-          url: images.consultation.src,
+          url: new URL(images.consultation.src, siteUrl).href,
           width: images.consultation.width,
           height: images.consultation.height,
           alt: images.consultation.alt,
@@ -53,6 +53,7 @@ export const metadata: Metadata = {
     description: seo.description,
   },
   formatDetection: { telephone: false },
+  ...(integrations.noindex && { robots: { index: false, follow: false } }),
 };
 
 export const viewport: Viewport = {
