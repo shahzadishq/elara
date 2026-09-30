@@ -119,7 +119,7 @@ export function ContactForm() {
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal-500/15 text-teal-700">
           <CheckIcon className="h-6 w-6" strokeWidth={2.2} />
         </span>
-        <h3 className="mt-5 font-serif text-3xl text-navy-900">Vielen Dank für Ihre Anfrage.</h3>
+        <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">Vielen Dank für Ihre Anfrage.</h3>
         <p className="mt-3 leading-relaxed text-muted">
           Ihre Nachricht ist bei uns eingegangen. Wir melden uns bei Ihnen, um einen Termin
           abzustimmen. Bitte beachten Sie: Ihr Termin ist erst verbindlich, wenn wir ihn Ihnen
@@ -152,7 +152,7 @@ export function ContactForm() {
       aria-busy={status === "submitting"}
       className="rounded-[1.5rem] bg-white p-6 sm:p-9"
     >
-      <h3 id="form-title" className="font-serif text-[1.75rem] leading-tight text-navy-900">
+      <h3 id="form-title" className="text-2xl leading-tight font-extrabold tracking-tight text-navy-900">
         Terminanfrage senden
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">

@@ -69,6 +69,8 @@ export const integrations = {
    * (e.g. a Formspree form URL).
    */
   enquiryEndpoint: process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT || withBase("/api/anfrage"),
+  /** Preview only: show labelled placeholders where client content is still missing. */
+  showPlaceholders: process.env.NEXT_PUBLIC_SHOW_PLACEHOLDERS === "1",
   /** Keeps preview deployments out of search engines. */
   noindex: process.env.NEXT_PUBLIC_NOINDEX === "1",
   /** Highlights unconfirmed content for client review. Never enable in production. */
@@ -132,7 +134,7 @@ export const images = {
 
 export const hero = {
   eyebrow: "Zahnarztpraxis am Willy-Brandt-Platz, Augsburg",
-  title: "Zahnmedizin in Augsburg, die sich nach Ihrem Alltag richtet.",
+  title: "Zahnmedizin in Augsburg, die sich nach *Ihrem Alltag* richtet.",
   intro:
     "Bei Elara Zahnmedizin nehmen wir uns Zeit für Ihre Fragen und besprechen jeden Schritt verständlich mit Ihnen. Und weil wir an sieben Tagen in der Woche für Sie da sind, findet sich ein Termin, der zu Ihnen passt.",
   trustPoints: [
@@ -144,7 +146,7 @@ export const hero = {
 
 export const intro = {
   eyebrow: "Die Praxis",
-  title: "Willkommen bei Elara Zahnmedizin",
+  title: "Willkommen bei *Elara Zahnmedizin*",
   paragraphs: [
     "Ein Zahnarztbesuch soll sich gut in Ihr Leben einfügen – nicht umgekehrt. Deshalb öffnen wir werktags schon um 7 Uhr, bleiben bis 21 Uhr und sind auch samstags, sonntags und an Feiertagen für Sie da.",
     "In unserer hellen, ruhigen Praxis am Willy-Brandt-Platz erwartet Sie ein Team, das Ihnen zuhört. Wir erklären Befunde in verständlichen Worten, zeigen Ihnen die möglichen Wege auf und entscheiden gemeinsam mit Ihnen, wie es weitergeht.",
@@ -275,7 +277,7 @@ export const services: Service[] = [
 
 export const reasons = {
   eyebrow: "Warum Elara Zahnmedizin",
-  title: "Zahnmedizin, die in Ihren Kalender passt.",
+  title: "Zahnmedizin, die in *Ihren Kalender* passt.",
   intro:
     "Wir möchten, dass Sie Ihre Zahngesundheit nicht aufschieben müssen – weder wegen der Arbeit noch wegen des Wochenendes.",
   items: [
@@ -304,39 +306,34 @@ export const reasons = {
 
 export const team = {
   eyebrow: "Team",
-  title: "Menschen, die sich Zeit für Sie nehmen.",
+  title: "Menschen, die sich *Zeit für Sie* nehmen.",
   text: "Vom ersten Anruf bis zum Behandlungstermin begleitet Sie unser Praxisteam. Wir hören zu, beantworten Ihre Fragen und sorgen dafür, dass Sie sich bei uns gut aufgehoben fühlen.",
   // No names, titles or biographies supplied yet – do not invent them.
   members: [] as { name: string; role: string; bio?: string; image?: string }[],
 };
 
-export const gallery = {
-  eyebrow: "Einblicke",
-  title: "Helle Räume, ruhige Atmosphäre.",
-  text: "Ein erster Eindruck von unserer Praxis am Willy-Brandt-Platz – vom Empfang bis in den Röntgenraum.",
-  items: [
-    { image: "reception", caption: "Empfang & Wartebereich" },
-    { image: "xray", caption: "Röntgenraum" },
-  ] as const,
-};
 
 export const bookingProcess = {
-  eyebrow: "So kommen Sie zu Ihrem Termin",
-  title: "In drei Schritten zu uns.",
+  eyebrow: "So funktioniert's",
+  title: "In drei Schritten *zu Ihrem Termin*.",
+  intro: "Vom ersten Kontakt bis zum Besuch in der Praxis – so einfach kommen Sie zu uns.",
   steps: [
     {
+      image: "reception",
       title: "Kontakt aufnehmen",
       text: "Rufen Sie uns an oder senden Sie uns über das Formular eine Terminanfrage – ganz ohne Registrierung.",
     },
     {
+      image: "teamGroup",
       title: "Termin abstimmen",
       text: "Wir melden uns bei Ihnen und stimmen gemeinsam einen passenden Termin ab. Verbindlich ist er erst mit unserer Bestätigung.",
     },
     {
+      image: "xray",
       title: "Die Praxis besuchen",
-      text: "Am vereinbarten Tag empfangen wir Sie am Willy-Brandt-Platz 1. Fragen vorab klären wir gern telefonisch.",
+      text: "Am vereinbarten Tag empfangen wir Sie in unseren hellen Räumen am Willy-Brandt-Platz 1. Fragen vorab klären wir gern telefonisch.",
     },
-  ],
+  ] as { image: keyof typeof images; title: string; text: string }[],
 };
 
 export type Faq = { q: string; a: string; confirmed: boolean; note?: string };
@@ -359,7 +356,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Wo finde ich die Praxis?",
-    a: `Elara Zahnmedizin befindet sich am ${practice.address.street} in ${practice.address.postalCode} ${practice.address.city}. Über den Link „Route planen“ im Kontaktbereich gelangen Sie direkt zur Wegbeschreibung.`,
+    a: `Elara Zahnmedizin befindet sich am ${practice.address.street} in ${practice.address.postalCode} ${practice.address.city}. Über den Link „Route planen“ im Seitenfuß gelangen Sie direkt zur Wegbeschreibung.`,
     confirmed: true,
   },
   {
@@ -402,7 +399,7 @@ export const visibleFaqs = faqs.filter(
 
 export const contact = {
   eyebrow: "Kontakt & Terminanfrage",
-  title: "Wir freuen uns auf Sie.",
+  title: "Wir *freuen uns* auf Sie.",
   intro:
     "Rufen Sie uns an oder senden Sie uns eine Terminanfrage. Wir melden uns bei Ihnen, um einen passenden Termin zu vereinbaren.",
   preferences: [
@@ -412,6 +409,19 @@ export const contact = {
     { value: "abends", label: "Abends (ab 17 Uhr)" },
     { value: "wochenende", label: "Am Wochenende" },
   ],
+};
+
+/**
+ * Patient testimonials. Add ONLY authentic, approved reviews here (quote, the
+ * name or initials the patient approved, and the source, e.g. "Google").
+ * While this list is empty the section is hidden in production. The preview
+ * build (NEXT_PUBLIC_SHOW_PLACEHOLDERS=1) shows clearly labelled placeholder
+ * cards instead – no invented quotes, names or star ratings.
+ */
+export const testimonials = {
+  eyebrow: "Stimmen unserer Patienten",
+  title: "Was unsere Patientinnen und Patienten *sagen*.",
+  items: [] as { quote: string; name: string; source: string }[],
 };
 
 export const seo = {

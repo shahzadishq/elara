@@ -5,7 +5,7 @@ import { Intro } from "@/components/sections/Intro";
 import { Services } from "@/components/sections/Services";
 import { Reasons } from "@/components/sections/Reasons";
 import { Team } from "@/components/sections/Team";
-import { Gallery } from "@/components/sections/Gallery";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Process } from "@/components/sections/Process";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
@@ -50,10 +50,10 @@ export default function Home() {
         <Hero />
         <Intro />
         <Services />
-        <Reasons />
-        <Team />
-        <Gallery />
         <Process />
+        <Reasons />
+        <Testimonials />
+        <Team />
         <Faq />
         <Contact />
       </main>

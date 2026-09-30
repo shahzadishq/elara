@@ -9,19 +9,19 @@ A single-page landing site in German (Next.js 16, TypeScript, Tailwind CSS 4). I
 The page sections, in order:
 
 - Sticky header with anchor navigation and click-to-call.
-- Hero.
+- Hero (white background).
 - Practice introduction.
-- Services: 8 treatments in an accessible accordion. Each has its own appointment button.
+- Services: 8 treatments as a card grid. The whole card links to the appointment form.
+- "So funktioniert's": a three-step scroll story. On desktop the image column stays pinned, and each step activates as it reaches the middle of the screen, cross-fading its photo and filling the progress line. On mobile each step shows its own photo.
 - Why Elara.
+- Patient testimonials (see section 3).
 - Team.
-- Gallery.
-- Three-step appointment process.
 - FAQ accordion.
-- Contact section with the enquiry form.
+- Contact section with phone, e-mail and the enquiry form. Address, opening hours and "Route planen" are in the hero card and footer.
 - Footer.
 - On mobile, a bottom action bar with "Termin vereinbaren" and "Anrufen". It hides while the contact form is on screen so it never covers form fields.
 
-**Design.** The palette comes from the logo: navy `#103f72` and teal `#20a8b2`, set on warm ivory and sand. Headings use Newsreader (serif) and body text uses Manrope, the logo's font. Both fonts are self-hosted through `next/font`. The supplied photography is used once each, cropped per section with the aspect ratios kept.
+**Design.** The palette comes from the logo: navy `#103f72` and teal `#20a8b2`, set on warm ivory and sand. All text uses Manrope, the logo's font, self-hosted through `next/font`. Headings are extra-bold, with a hand-drawn teal underline on key words. To underline a word, wrap it in `*asterisks*` in `site.ts`. Eyebrow labels are pill-shaped. All 5 supplied photos are used and cropped per section with their aspect ratios kept. The team group photo appears twice (scroll story and Team section) because there are only 5 photos.
 
 **Enquiry form** (`/api/anfrage`):
 
@@ -80,7 +80,7 @@ Other wording to confirm:
 - **"Viele Behandlungen unter einem Dach"** depends on the final service list.
 - **FAQ "Welche Behandlungen…"** also depends on the final service list.
 - **FAQ "Akute Zahnschmerzen"** tells people to call during opening hours and to use the zahnärztlicher Notdienst otherwise. It makes no availability promise, but the practice should approve it.
-- **Gallery caption "Röntgenraum"** was inferred from the photo.
+- **Step 3 of the scroll story** uses the X-ray room photo as a general view of the practice rooms.
 
 ## 3. Missing client information or integrations
 
@@ -88,7 +88,7 @@ Other wording to confirm:
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
 - **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
-- **Patient reviews:** none supplied, so the reviews section was left out entirely. There is no rating badge or review markup anywhere.
+- **Patient reviews:** none supplied yet. The testimonials section is built, but it is hidden in production until real, approved reviews are added to `testimonials.items` in `site.ts` (quote, approved name or initials, source). The preview shows three clearly labelled placeholder cards instead. There are no invented quotes, names, star ratings or review markup.
 - **Booking URL:** none supplied, so every "Termin vereinbaren" button goes to the enquiry form. Set `NEXT_PUBLIC_BOOKING_URL` if an online booking tool exists (e.g. Doctolib).
 - **Analytics / Google Ads:** no GTM or Ads IDs were supplied, so no tracking is active. Set `NEXT_PUBLIC_GTM_ID`, then configure the Google Ads conversion inside GTM using the `enquiry_submit_success` and `phone_click` events.
 - **Production domain:** unknown. Set `NEXT_PUBLIC_SITE_URL` to enable the canonical URL, OG image and structured-data URL.
@@ -96,7 +96,7 @@ Other wording to confirm:
   - which insurance types the practice treats (gesetzlich/privat),
   - what to bring to the first appointment,
   - how the practice handles anxious patients.
-- **More photography (optional):** there are only 5 photos, so the gallery has two images. Treatment rooms or exterior shots would strengthen it.
+- **More photography (recommended):** with only 5 photos, one image is used twice. Individual team portraits, a treatment room and an exterior or entrance shot would let every section have its own image.
 
 ## Preview deployment (GitHub Pages)
 

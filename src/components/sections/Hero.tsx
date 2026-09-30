@@ -2,21 +2,17 @@ import Image from "next/image";
 import { hero, images, practice } from "@/content/site";
 import { AppointmentLink, PhoneLink } from "../Cta";
 import { CheckIcon, ClockIcon } from "../Icons";
+import { Rich } from "../Rich";
 
 export function Hero() {
   const img = images.consultation;
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden">
-      {/* soft background shape */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-0 hidden h-[88%] w-[36%] rounded-bl-[5rem] bg-sand lg:block"
-      />
-      <div className="container-page relative grid items-center gap-10 pt-8 pb-14 sm:pt-12 lg:grid-cols-12 lg:gap-12 lg:pt-16 lg:pb-24">
+    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden bg-white">
+      <div className="container-page relative grid items-center gap-10 pt-8 pb-16 sm:pt-12 lg:grid-cols-12 lg:gap-12 lg:pt-16 lg:pb-24">
         <div className="animate-rise lg:col-span-6 xl:col-span-7 xl:pr-4">
           <p className="eyebrow">{hero.eyebrow}</p>
           <h1 id="hero-title" className="heading-xl mt-5 text-balance">
-            {hero.title}
+            <Rich text={hero.title} />
           </h1>
           <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-muted sm:text-lg">
             {hero.intro}

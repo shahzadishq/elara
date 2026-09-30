@@ -1,4 +1,4 @@
-import { legal, navigation, practice, withBase } from "@/content/site";
+import { directionsUrl, legal, navigation, practice, withBase } from "@/content/site";
 import { Logo } from "./Logo";
 import { ConsentSettingsButton } from "./ConsentManager";
 
@@ -35,6 +35,17 @@ export function Footer() {
                 {practice.address.street}
                 <br />
                 {practice.address.postalCode} {practice.address.city}
+                <br />
+                <a
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  data-track="directions_click"
+                  data-track-location="footer"
+                  className="font-semibold text-teal-300 hover:text-white"
+                >
+                  Route planen →<span className="sr-only"> (öffnet Google Maps in neuem Tab)</span>
+                </a>
               </p>
               <p>
                 <a href={practice.phone.href} data-track-location="footer" className="hover:text-white">

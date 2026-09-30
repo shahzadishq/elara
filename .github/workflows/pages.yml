@@ -47,8 +47,10 @@ jobs:
           NEXT_PUBLIC_ENQUIRY_ENDPOINT: ${{ vars.ENQUIRY_ENDPOINT }}
           NEXT_PUBLIC_BOOKING_URL: ${{ vars.BOOKING_URL }}
           NEXT_PUBLIC_GTM_ID: ${{ vars.GTM_ID }}
-          # Preview only: keep it out of search engines.
+          # Preview only: keep it out of search engines and show labelled
+          # placeholders (e.g. testimonials) where client content is missing.
           NEXT_PUBLIC_NOINDEX: "1"
+          NEXT_PUBLIC_SHOW_PLACEHOLDERS: "1"
 
       - uses: actions/upload-pages-artifact@v3
         with:

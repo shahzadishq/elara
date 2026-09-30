@@ -1,6 +1,7 @@
 import { integrations, practice, visibleFaqs } from "@/content/site";
 import { ReviewBadge } from "../Cta";
 import { Disclosure } from "../Disclosure";
+import { Rich } from "../Rich";
 
 export function Faq() {
   return (
@@ -9,7 +10,7 @@ export function Faq() {
         <div className="lg:col-span-4">
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-title" className="heading-lg mt-4 text-balance">
-            Häufige Fragen
+            <Rich text="Häufige *Fragen*" />
           </h2>
           <p className="mt-5 leading-relaxed text-muted">
             Ihre Frage ist nicht dabei? Rufen Sie uns gern an unter{" "}

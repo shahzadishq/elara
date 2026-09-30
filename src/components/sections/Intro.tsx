@@ -2,6 +2,7 @@ import Image from "next/image";
 import { images, integrations, intro } from "@/content/site";
 import { CheckIcon } from "../Icons";
 import { ReviewBadge } from "../Cta";
+import { Rich } from "../Rich";
 
 export function Intro() {
   const img = images.teamWalking;
@@ -27,7 +28,7 @@ export function Intro() {
         <div className="lg:col-span-6 lg:col-start-7">
           <p className="eyebrow">{intro.eyebrow}</p>
           <h2 id="praxis-title" className="heading-lg mt-4 text-balance">
-            {intro.title}
+            <Rich text={intro.title} />
             <ReviewBadge show={integrations.reviewMode && !intro.confirmed} />
           </h2>
           <div className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-muted">
