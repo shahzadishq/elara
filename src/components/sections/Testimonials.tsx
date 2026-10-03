@@ -21,9 +21,9 @@ export function Testimonials() {
         </div>
 
         {hasReviews ? (
-          <ul className="mt-12 grid gap-5 md:grid-cols-3">
+          <ul className="mt-12 flex flex-wrap justify-center gap-5">
             {testimonials.items.map((t) => (
-              <li key={t.quote}>
+              <li key={t.quote} className="w-full md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
                 <figure className="flex h-full flex-col rounded-[1.25rem] border border-line bg-white p-7 shadow-soft">
                   <div className="flex items-center justify-between gap-4">
                     <QuoteMark />
