@@ -38,7 +38,6 @@ export const impressum: LegalSection[] = [
         type: "lines",
         lines: [
           `Telefon: ${practice.phone.display}`,
-          "Telefon: +49 157 332 188 26",
           `E-Mail: ${practice.email}`,
         ],
       },
