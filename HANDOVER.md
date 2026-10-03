@@ -17,11 +17,11 @@ The page sections, in order:
 - Patient testimonials (see section 3).
 - Team.
 - FAQ accordion.
-- Contact section with phone, e-mail, opening hours and the enquiry form. The address is in the hero card and footer, and "Route planen" is in the footer.
+- Contact section with phone, e-mail, opening hours and the enquiry form. Opening hours also appear in the hero image card. The address and "Route planen" are in the footer.
 - Footer.
 - On mobile, a bottom action bar with "Termin vereinbaren" and "Anrufen". It hides while the contact form is on screen so it never covers form fields.
 
-**Design.** The palette comes from the logo: navy `#103f72` and teal `#20a8b2`, set on warm ivory and sand. All text uses Manrope, the logo's font, self-hosted through `next/font`. Headings are extra-bold, with a hand-drawn teal underline on key words. To underline a word, wrap it in `*asterisks*` in `site.ts`. Eyebrow labels are pill-shaped. All 5 supplied photos are used and cropped per section with their aspect ratios kept. The team group photo appears twice (scroll story and Team section) because there are only 5 photos.
+**Design.** The palette comes from the logo: navy `#103f72` and teal `#20a8b2`, set on warm ivory and sand. All text uses Manrope, the logo's font, self-hosted through `next/font`. Headings are extra-bold, with a hand-drawn teal underline on key words. To underline a word, wrap it in `*asterisks*` in `site.ts`. Eyebrow labels are pill-shaped. The logo and four photos come from the updated brand-asset set (tooth icon). The X-ray room photo is from the first set; it shows no branding. All 5 photos are used and cropped per section with their aspect ratios kept. The team group photo appears twice (scroll story and Team section) because there are only 5 photos.
 
 **Enquiry form** (`/api/anfrage`):
 
@@ -84,7 +84,7 @@ Other wording to confirm:
 
 ## 3. Missing client information or integrations
 
-- **Contact details:** updated by the client: phone +49 152 342 736 71, e-mail info@landsberger-medienagentur.de, opening hours Mo–Fr 9–17, Sa 9–12, Sunday closed. The location changed to Meitingen, so the postcode is now 86405 (Meitingen's postcode). **The street "Willy-Brandt-Platz 1" was carried over from the Augsburg address. Please confirm the correct Meitingen street address**, because it drives the directions link and structured data.
+- **Contact details:** supplied by the client: Hauptstraße 56, 86405 Meitingen · phone +49 152 342 736 71 · info@landsberger-medienagentur.de · Mo–Fr 9–17, Sa 9–12, Sunday closed.
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
 - **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
