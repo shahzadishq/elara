@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <title>Elara monogram</title>
-  <path d="M84 27C77 20 69 17 59 17 35 17 18 35 18 60s17 43 41 43c13 0 23-5 31-15" fill="none" stroke="#103f72" stroke-width="9" stroke-linecap="round"/>
-  <path d="M39 44h43M39 60h33M39 76h43" fill="none" stroke="#103f72" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="93" cy="76" r="5" fill="#20a8b2"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title"><title id="title">Elara tooth icon</title><path d="M60 25C49 25 42 16 31 19C16 23 17 40 22 53C26 63 29 72 31 85C33 99 39 104 44 94L53 74C56 68 64 68 67 74L76 94C81 104 87 99 89 85C91 72 94 63 98 53C103 40 104 23 89 19C78 16 71 25 60 25Z" fill="none" stroke="#103f72" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M78 32C85 30 91 34 91 42" fill="none" stroke="#20a8b2" stroke-width="6" stroke-linecap="round"/></svg>

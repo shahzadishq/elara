@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { hero, images, practice } from "@/content/site";
 import { AppointmentLink, PhoneLink } from "../Cta";
-import { CheckIcon, PinIcon } from "../Icons";
+import { CheckIcon, ClockIcon } from "../Icons";
 import { Rich } from "../Rich";
 
 export function Hero() {
@@ -48,16 +48,18 @@ export function Hero() {
               className="aspect-[4/3] h-auto w-full object-cover object-[40%_center] lg:aspect-square lg:object-[45%_center]"
             />
           </div>
-          <div className="absolute -bottom-6 left-4 flex max-w-[18rem] items-center gap-3 rounded-2xl border border-white/70 bg-white/95 p-4 shadow-soft backdrop-blur sm:left-6 sm:p-5 lg:-left-8">
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-500/15 text-teal-700">
-              <PinIcon className="h-5 w-5" />
-            </span>
-            <p className="text-sm leading-snug">
-              <span className="block font-extrabold text-navy-900">Ihre Praxis in {practice.address.city}</span>
-              <span className="text-muted">
-                {practice.address.street}, {practice.address.postalCode} {practice.address.city}
-              </span>
+          <div className="absolute -bottom-6 left-4 max-w-[17rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-soft backdrop-blur sm:left-6 sm:p-5 lg:-left-8">
+            <p className="flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.14em] text-teal-700 uppercase">
+              <ClockIcon className="h-4 w-4" /> Öffnungszeiten
             </p>
+            <dl className="mt-2.5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 text-sm">
+              {practice.openingHours.map((row) => (
+                <div key={row.label} className="contents">
+                  <dt className="text-muted">{row.short}</dt>
+                  <dd className="font-semibold text-navy-900">{row.hours}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </div>

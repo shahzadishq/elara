@@ -21,10 +21,9 @@ export const withBase = (path: string) => `${basePath}${path}`;
 export const practice = {
   name: "Elara Zahnmedizin",
   shortName: "Elara",
-  // Supplied by the client. City changed to Meitingen (PLZ 86405) on request –
-  // street name still to be confirmed for the Meitingen location.
+  // Supplied by the client.
   address: {
-    street: "Willy-Brandt-Platz 1",
+    street: "Hauptstraße 56",
     postalCode: "86405",
     city: "Meitingen",
     country: "DE",
@@ -332,7 +331,7 @@ export const bookingProcess = {
     {
       image: "xray",
       title: "Die Praxis besuchen",
-      text: "Am vereinbarten Tag empfangen wir Sie in unseren hellen Räumen am Willy-Brandt-Platz 1. Fragen vorab klären wir gern telefonisch.",
+      text: "Am vereinbarten Tag empfangen wir Sie in unseren hellen Räumen in der Hauptstraße 56. Fragen vorab klären wir gern telefonisch.",
     },
   ] as { image: keyof typeof images; title: string; text: string }[],
 };

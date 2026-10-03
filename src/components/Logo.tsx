@@ -1,5 +1,5 @@
 /**
- * Inline version of the supplied elara-logo.svg (same geometry), so the
+ * Inline version of the supplied elara-logo.svg (tooth icon, updated brand assets) (same geometry), so the
  * wordmark uses the self-hosted Manrope font and can switch to a light variant.
  */
 export function Logo({
@@ -19,20 +19,14 @@ export function Logo({
     >
       <g transform="translate(6 6)">
         <path
-          d="M84 27C77 20 69 17 59 17 35 17 18 35 18 60s17 43 41 43c13 0 23-5 31-15"
+          d="M60 25C49 25 42 16 31 19C16 23 17 40 22 53C26 63 29 72 31 85C33 99 39 104 44 94L53 74C56 68 64 68 67 74L76 94C81 104 87 99 89 85C91 72 94 63 98 53C103 40 104 23 89 19C78 16 71 25 60 25Z"
           fill="none"
           stroke={main}
-          strokeWidth="9"
+          strokeWidth="7"
           strokeLinecap="round"
+          strokeLinejoin="round"
         />
-        <path
-          d="M39 44h43M39 60h33M39 76h43"
-          fill="none"
-          stroke={main}
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-        <circle cx="93" cy="76" r="5" fill="#20a8b2" />
+        <path d="M78 32C85 30 91 34 91 42" fill="none" stroke="#20a8b2" strokeWidth="6" strokeLinecap="round" />
       </g>
       <text
         x="140"
