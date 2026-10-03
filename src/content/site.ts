@@ -443,6 +443,20 @@ export const testimonials = {
       source: "Google",
       rating: 5,
     },
+    {
+      quote:
+        "Sehr netter Zahnarzt, fachlich sehr gut mit einem ausgesprochen tollen Team. Gute Prophylaxe. Sind schon viele Jahre mit der ganzen Familie in dieser Praxis und immer sehr zufrieden. Kann man nur empfehlen.",
+      name: "Jennifer F.",
+      source: "Google",
+      rating: 5,
+    },
+    {
+      quote:
+        "Klasse Zahnarzt, der gut erklärt und kommuniziert, alles mit einer Prise Humor. Zuvorkommender Service, komme auf jeden Fall wieder.",
+      name: "Richard S.",
+      source: "Google",
+      rating: 5,
+    },
   ] as { quote: string; name: string; source?: string; rating?: number }[],
 };
 
