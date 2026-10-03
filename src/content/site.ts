@@ -427,20 +427,23 @@ export const testimonials = {
         "Sehr nette Zahnärzte machen ihre Arbeit sehr gut und nehmen sich ebenfalls Zeit für die Patienten, mitarbeiten ebenfalls auch sehr nett. Kann man nur weiter empfehlen werde dort weiterhin bleiben.",
       name: "Alex B.",
       source: "Google",
+      rating: 5,
     },
     {
       quote:
         "Kompetenter und einfühlsamer Arzt, der sich immer ausreichend Zeit für mich nimmt. Freundliches Praxisteam, moderne Räume und super Organisation, Wartezeit meist max. 5 Minuten.",
       name: "Maria T.",
       source: "Google",
+      rating: 5,
     },
     {
       quote:
         "Sehr herzlich und top Leistung. Man fühlt sich aufgehoben und wird immer freundlich empfangen, sowohl in der Praxis als auch am Telefon. Einfach rundum ein Top Service! Macht weiter so.",
       name: "Michael R.",
       source: "Google",
+      rating: 5,
     },
-  ] as { quote: string; name: string; source?: string }[],
+  ] as { quote: string; name: string; source?: string; rating?: number }[],
 };
 
 export const seo = {

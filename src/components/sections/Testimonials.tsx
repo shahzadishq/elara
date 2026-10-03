@@ -25,7 +25,10 @@ export function Testimonials() {
             {testimonials.items.map((t) => (
               <li key={t.quote}>
                 <figure className="flex h-full flex-col rounded-[1.25rem] border border-line bg-white p-7 shadow-soft">
-                  <QuoteMark />
+                  <div className="flex items-center justify-between gap-4">
+                    <QuoteMark />
+                    {t.rating && <Stars rating={t.rating} />}
+                  </div>
                   <blockquote className="mt-4 flex-1 text-[1.02rem] leading-relaxed text-ink">
                     „{t.quote}“
                   </blockquote>
@@ -57,6 +60,26 @@ export function Testimonials() {
         )}
       </div>
     </section>
+  );
+}
+
+function Stars({ rating }: { rating: number }) {
+  return (
+    <span className="flex gap-0.5 text-amber-400" role="img" aria-label={`${rating} von 5 Sternen`}>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <svg
+          key={n}
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          className={`h-4.5 w-4.5 ${n <= rating ? "" : "text-line"}`}
+        >
+          <path
+            fill="currentColor"
+            d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8L10 1.6z"
+          />
+        </svg>
+      ))}
+    </span>
   );
 }
 
