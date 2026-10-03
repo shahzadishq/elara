@@ -2,12 +2,16 @@
  * Impressum and Datenschutz content.
  *
  * Source: landsberger-medienagentur.de/impressum and /datenschutz (supplied by
- * the client, October 2026). The Impressum is taken over as published. The
+ * the client, October 2026). Provider changed to Elara Zahnmedizin with the
+ * practice address and contact details from site.ts; TMG references updated to
+ * DDG; the agency's own "Berufsbezeichnung" description was removed. The
  * Datenschutz text follows the source, but sections describing the agency's own
  * website (IONOS hosting, newsletter, social-media embeds) were adapted or left
  * out so the statement matches what this site actually does. Please have both
  * texts legally reviewed before launch.
  */
+
+import { practice } from "./site";
 
 export type LegalBlock =
   | { type: "p"; text: string }
@@ -18,36 +22,27 @@ export type LegalBlock =
 export type LegalSection = { heading: string; blocks: LegalBlock[] };
 
 const provider = [
-  "Landsberger Medienagentur",
+  practice.name,
   "Inhaber: Ioan Meyer",
-  "Akeleistraße 3",
-  "86899 Landsberg am Lech",
+  practice.address.street,
+  `${practice.address.postalCode} ${practice.address.city}`,
   "Deutschland",
 ];
 
 export const impressum: LegalSection[] = [
   {
-    heading: "Angaben gemäß § 5 TMG",
+    heading: "Angaben gemäß § 5 DDG",
     blocks: [
       { type: "lines", lines: provider },
       {
         type: "lines",
         lines: [
-          "Telefon: +49 1523 4273671",
-          "Telefon: +49 1573 3218826",
-          "E-Mail: info@landsberger-medienagentur.de",
+          `Telefon: ${practice.phone.display}`,
+          "Telefon: +49 157 332 188 26",
+          `E-Mail: ${practice.email}`,
         ],
       },
       { type: "p", text: "Vertreten durch: Ioan Meyer (Inhaber)" },
-    ],
-  },
-  {
-    heading: "Berufsbezeichnung und Tätigkeitsbeschreibung",
-    blocks: [
-      {
-        type: "p",
-        text: "Die Landsberger Medienagentur ist eine Full-Service-Agentur mit Fokus auf Webdesign, Online-Marketing, Social Media Management, Grafikdesign sowie der Entwicklung und Betreuung digitaler Projekte für Unternehmen unterschiedlichster Branchen.",
-      },
     ],
   },
   {
@@ -69,7 +64,7 @@ export const impressum: LegalSection[] = [
     blocks: [
       {
         type: "p",
-        text: "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 Telemediengesetz (TMG) für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
+        text: "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 Digitale-Dienste-Gesetz (DDG) für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
       },
       {
         type: "p",
@@ -159,7 +154,7 @@ export const datenschutz: LegalSection[] = [
     heading: "2. Verantwortliche Stelle",
     blocks: [
       { type: "p", text: "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber:" },
-      { type: "lines", lines: [...provider, "E-Mail: info@landsberger-medienagentur.de"] },
+      { type: "lines", lines: [...provider, `E-Mail: ${practice.email}`] },
     ],
   },
   {
