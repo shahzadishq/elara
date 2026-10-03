@@ -88,7 +88,7 @@ Other wording to confirm:
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
 - **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
-- **Patient reviews:** none supplied yet. The testimonials section is built, but it is hidden in production until real, approved reviews are added to `testimonials.items` in `site.ts` (quote, approved name or initials, source). The preview shows three clearly labelled placeholder cards instead. There are no invented quotes, names, star ratings or review markup.
+- **Patient reviews:** three reviews supplied by the client (Alex B., Maria T., Michael R.) are shown. They are labelled as Google reviews. There are no star ratings or review markup.
 - **Booking URL:** none supplied, so every "Termin vereinbaren" button goes to the enquiry form. Set `NEXT_PUBLIC_BOOKING_URL` if an online booking tool exists (e.g. Doctolib).
 - **Analytics / Google Ads:** no GTM or Ads IDs were supplied, so no tracking is active. Set `NEXT_PUBLIC_GTM_ID`, then configure the Google Ads conversion inside GTM using the `enquiry_submit_success` and `phone_click` events.
 - **Production domain:** unknown. Set `NEXT_PUBLIC_SITE_URL` to enable the canonical URL, OG image and structured-data URL.
