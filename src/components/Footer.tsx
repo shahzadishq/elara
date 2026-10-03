@@ -11,7 +11,7 @@ export function Footer() {
           <div className="md:col-span-4">
             <Logo variant="light" className="h-11 w-auto" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
-              Zahnarztpraxis in Augsburg – an sieben Tagen in der Woche für Sie geöffnet.
+              Ihre Zahnarztpraxis in Meitingen – persönlich und verständlich.
             </p>
           </div>
 

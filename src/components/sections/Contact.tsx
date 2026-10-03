@@ -1,6 +1,6 @@
 import { contact, practice } from "@/content/site";
 import { ContactForm } from "../ContactForm";
-import { MailIcon, PhoneIcon } from "../Icons";
+import { ClockIcon, MailIcon, PhoneIcon } from "../Icons";
 import { Rich } from "../Rich";
 
 export function Contact() {
@@ -41,6 +41,25 @@ export function Contact() {
                 <span className="block font-semibold break-all">{practice.email}</span>
               </span>
             </a>
+          </div>
+
+          <div className="mt-3 rounded-2xl border border-white/15 bg-white/5 p-5">
+            <p className="flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-teal-300 uppercase">
+              <ClockIcon className="h-4 w-4" /> Öffnungszeiten
+            </p>
+            <table className="mt-3 w-full text-left">
+              <caption className="sr-only">Öffnungszeiten</caption>
+              <tbody>
+                {practice.openingHours.map((row) => (
+                  <tr key={row.label} className="border-b border-white/10 last:border-0">
+                    <th scope="row" className="py-2 pr-4 font-normal text-white/70">
+                      {row.label}
+                    </th>
+                    <td className="py-2 text-right font-semibold whitespace-nowrap">{row.hours}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 

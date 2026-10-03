@@ -155,8 +155,6 @@ export function Header() {
           </div>
           <p className="mt-8 text-sm leading-relaxed text-muted">
             {practice.address.street}, {practice.address.postalCode} {practice.address.city}
-            <br />
-            Mo–Fr 7–21 Uhr · Sa, So & Feiertage 9–18 Uhr
           </p>
         </nav>
       </div>

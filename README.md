@@ -1,6 +1,6 @@
 # Elara Zahnmedizin – Website
 
-Single-page landing site for Elara Zahnmedizin, Augsburg (Next.js 16, TypeScript, Tailwind CSS 4).
+Single-page landing site for Elara Zahnmedizin, Meitingen (Next.js 16, TypeScript, Tailwind CSS 4).
 
 ```bash
 npm install

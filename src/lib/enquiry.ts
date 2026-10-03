@@ -3,7 +3,7 @@
  * Used on the client for instant feedback and on the server as the source of truth.
  */
 
-export const PREFERENCES = ["", "vormittags", "nachmittags", "abends", "wochenende"] as const;
+export const PREFERENCES = ["", "vormittags", "nachmittags", "samstag"] as const;
 export const MESSAGE_MAX = 500;
 
 export type ContactMethod = "email" | "phone";
