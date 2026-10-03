@@ -69,8 +69,6 @@ export const integrations = {
    * (e.g. a Formspree form URL).
    */
   enquiryEndpoint: process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT || withBase("/api/anfrage"),
-  /** Preview only: show labelled placeholders where client content is still missing. */
-  showPlaceholders: process.env.NEXT_PUBLIC_SHOW_PLACEHOLDERS === "1",
   /** Keeps preview deployments out of search engines. */
   noindex: process.env.NEXT_PUBLIC_NOINDEX === "1",
   /** Highlights unconfirmed content for client review. Never enable in production. */
@@ -80,15 +78,10 @@ export const integrations = {
 export const appointmentHref = integrations.bookingUrl ?? "#kontakt";
 export const appointmentIsExternal = Boolean(integrations.bookingUrl);
 
-/**
- * Legal pages. No approved Impressum / Datenschutz text has been supplied yet;
- * the internal routes show a clearly marked placeholder and are set to noindex.
- * Replace with the approved texts (or external URLs) before launch.
- */
+/** Legal pages – content lives in src/content/legal.ts. */
 export const legal = {
   impressumHref: withBase("/impressum/"),
   datenschutzHref: withBase("/datenschutz/"),
-  approved: false,
 };
 
 export const navigation = [
@@ -410,13 +403,7 @@ export const contact = {
   ],
 };
 
-/**
- * Patient testimonials. Add ONLY authentic, approved reviews here (quote, the
- * name or initials the patient approved, and the source, e.g. "Google").
- * While this list is empty the section is hidden in production. The preview
- * build (NEXT_PUBLIC_SHOW_PLACEHOLDERS=1) shows clearly labelled placeholder
- * cards instead – no invented quotes, names or star ratings.
- */
+/** Patient testimonials (Google reviews supplied by the client). Shown as a carousel. */
 export const testimonials = {
   eyebrow: "Stimmen unserer Patienten",
   title: "Was unsere Patientinnen und Patienten *sagen*.",

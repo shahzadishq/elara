@@ -1,66 +1,159 @@
-import { integrations, testimonials } from "@/content/site";
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { testimonials } from "@/content/site";
+import { ArrowIcon } from "../Icons";
 import { Rich } from "../Rich";
 
 /**
- * Patient reviews. Renders only authentic reviews from site.ts. While none are
- * supplied, the section is hidden – except on the preview build, where clearly
- * labelled placeholder cards show the layout (no invented quotes or ratings).
+ * Patient reviews as a carousel: native horizontal scroll with snap points
+ * (swipe on touch, trackpad on desktop), plus previous/next buttons and dots.
+ * No autoplay – visitors move through the reviews at their own pace.
+ * Shows 1 card on phones, 2 on tablets, 3 on desktop.
  */
 export function Testimonials() {
-  const hasReviews = testimonials.items.length > 0;
-  if (!hasReviews && !integrations.showPlaceholders) return null;
+  const trackRef = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+  const items = testimonials.items;
+
+  const update = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const slides = [...track.children] as HTMLElement[];
+    const left = track.scrollLeft;
+    const idx = slides.reduce(
+      (best, el, i) =>
+        Math.abs(slideLeft(track, el) - left) < Math.abs(slideLeft(track, slides[best]) - left)
+          ? i
+          : best,
+      0,
+    );
+    setActive(idx);
+    setCanPrev(left > 4);
+    setCanNext(left + track.clientWidth < track.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    update();
+    const track = trackRef.current;
+    track?.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      track?.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [update]);
+
+  function goTo(i: number) {
+    const track = trackRef.current;
+    const slide = track?.children[i] as HTMLElement | undefined;
+    if (!track || !slide) return;
+    track.scrollTo({ left: slideLeft(track, slide), behavior: "smooth" });
+  }
+
+  function step(dir: 1 | -1) {
+    const track = trackRef.current;
+    const first = track?.children[0] as HTMLElement | undefined;
+    if (!track || !first) return;
+    track.scrollBy({ left: dir * (first.offsetWidth + 20), behavior: "smooth" });
+  }
+
+  if (items.length === 0) return null;
 
   return (
-    <section aria-labelledby="stimmen-title" className="py-20 sm:py-24 lg:py-28">
+    <section
+      aria-labelledby="stimmen-title"
+      aria-roledescription="Karussell"
+      className="overflow-hidden py-20 sm:py-24 lg:py-28"
+    >
       <div className="container-page">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">{testimonials.eyebrow}</p>
-          <h2 id="stimmen-title" className="heading-lg mt-4 text-balance">
-            <Rich text={testimonials.title} />
-          </h2>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="eyebrow">{testimonials.eyebrow}</p>
+            <h2 id="stimmen-title" className="heading-lg mt-4 text-balance">
+              <Rich text={testimonials.title} />
+            </h2>
+          </div>
+          <div className="flex shrink-0 gap-2">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              disabled={!canPrev}
+              aria-label="Vorherige Bewertungen"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-navy-800/20 bg-white text-navy-800 transition hover:border-navy-800 disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              <ArrowIcon className="h-5 w-5 rotate-180" />
+            </button>
+            <button
+              type="button"
+              onClick={() => step(1)}
+              disabled={!canNext}
+              aria-label="Nächste Bewertungen"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-navy-800 text-white transition hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              <ArrowIcon className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
-        {hasReviews ? (
-          <ul className="mt-12 flex flex-wrap justify-center gap-5">
-            {testimonials.items.map((t) => (
-              <li key={t.quote} className="w-full md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
-                <figure className="flex h-full flex-col rounded-[1.25rem] border border-line bg-white p-7 shadow-soft">
-                  <div className="flex items-center justify-between gap-4">
-                    <QuoteMark />
-                    {t.rating && <Stars rating={t.rating} />}
-                  </div>
-                  <blockquote className="mt-4 flex-1 text-[1.02rem] leading-relaxed text-ink">
-                    „{t.quote}“
-                  </blockquote>
-                  <figcaption className="mt-6 border-t border-line pt-4 text-sm">
-                    <span className="font-bold text-navy-900">{t.name}</span>
-                    {t.source && <span className="text-muted"> · {t.source}</span>}
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <ul className="mt-12 grid gap-5 md:grid-cols-3" aria-label="Platzhalter für Patientenbewertungen">
-            {[1, 2, 3].map((n) => (
-              <li key={n}>
-                <figure className="flex h-full flex-col rounded-[1.25rem] border-2 border-dashed border-teal-500/40 bg-white p-7">
+        <ul
+          ref={trackRef}
+          className="-mx-5 mt-10 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto scroll-smooth px-5 sm:scroll-px-8 lg:scroll-px-0 pb-4 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((t, i) => (
+            <li
+              key={t.quote}
+              role="group"
+              aria-roledescription="Folie"
+              aria-label={`${i + 1} von ${items.length}`}
+              className="w-[85%] shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            >
+              <figure className="flex h-full flex-col rounded-[1.25rem] border border-line bg-white p-7 shadow-soft">
+                <div className="flex items-center justify-between gap-4">
                   <QuoteMark />
-                  <p className="mt-4 flex-1 leading-relaxed text-muted">
-                    Platzhalter: Hier erscheint eine echte Bewertung einer Patientin oder eines
-                    Patienten – mit deren Zustimmung und Quellenangabe (z. B. Google).
-                  </p>
-                  <figcaption className="mt-6 border-t border-line pt-4 text-sm font-semibold text-teal-700">
-                    Bewertung {n} · folgt nach Freigabe
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        )}
+                  {t.rating && <Stars rating={t.rating} />}
+                </div>
+                <blockquote className="mt-4 flex-1 text-[1.02rem] leading-relaxed text-ink">
+                  „{t.quote}“
+                </blockquote>
+                <figcaption className="mt-6 border-t border-line pt-4 text-sm">
+                  <span className="font-bold text-navy-900">{t.name}</span>
+                  {t.source && <span className="text-muted"> · {t.source}</span>}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-6 flex justify-center gap-1">
+          {items.map((t, i) => (
+            <button
+              key={t.quote}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`Bewertung ${i + 1} anzeigen`}
+              aria-current={i === active ? "true" : undefined}
+              className="group inline-flex h-6 items-center px-1"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${
+                  i === active ? "w-6 bg-navy-800" : "w-2 bg-navy-800/20 group-hover:bg-navy-800/40"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
+}
+
+/** Scroll position at which a slide sits flush with the track's padded start edge. */
+function slideLeft(track: HTMLElement, slide: HTMLElement) {
+  const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+  return slide.offsetLeft - track.offsetLeft - pad;
 }
 
 function Stars({ rating }: { rating: number }) {

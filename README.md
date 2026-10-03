@@ -18,7 +18,7 @@ npm run lint
 | Page sections | `src/components/sections/` |
 | Enquiry API (validation + delivery) | `src/app/api/anfrage/route.ts`, `src/lib/enquiry.ts` |
 | Analytics hooks + consent | `src/lib/analytics.ts`, `src/components/ConsentManager.tsx`, `src/components/AnalyticsListener.tsx` |
-| Legal page placeholders | `src/app/impressum`, `src/app/datenschutz` |
+| Impressum / Datenschutz text | `src/content/legal.ts` (pages in `src/app/impressum`, `src/app/datenschutz`) |
 | Images | `public/images/` |
 
 ## Deployment
