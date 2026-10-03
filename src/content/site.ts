@@ -21,32 +21,33 @@ export const withBase = (path: string) => `${basePath}${path}`;
 export const practice = {
   name: "Elara Zahnmedizin",
   shortName: "Elara",
-  // Supplied and confirmed by the client for use on this site.
+  // Supplied by the client. City changed to Meitingen (PLZ 86405) on request –
+  // street name still to be confirmed for the Meitingen location.
   address: {
     street: "Willy-Brandt-Platz 1",
-    postalCode: "86153",
-    city: "Augsburg",
+    postalCode: "86405",
+    city: "Meitingen",
     country: "DE",
   },
   phone: {
-    display: "+49 821 508 95 50",
-    href: "tel:+498215089550",
-    e164: "+498215089550",
+    display: "+49 152 342 736 71",
+    href: "tel:+4915234273671",
+    e164: "+4915234273671",
   },
-  email: "info@amedis-augsburg.de",
+  email: "info@landsberger-medienagentur.de",
   openingHours: [
-    { label: "Montag – Freitag", short: "Mo–Fr", hours: "7:00 – 21:00 Uhr" },
-    { label: "Samstag & Sonntag", short: "Sa–So", hours: "9:00 – 18:00 Uhr" },
-    { label: "Feiertage", short: "Feiertage", hours: "9:00 – 18:00 Uhr" },
+    { label: "Montag – Freitag", short: "Mo–Fr", hours: "9:00 – 17:00 Uhr" },
+    { label: "Samstag", short: "Sa", hours: "9:00 – 12:00 Uhr" },
+    { label: "Sonntag", short: "So", hours: "geschlossen" },
   ],
   // Machine-readable opening hours for structured data (schema.org).
   openingHoursSpec: [
     {
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "21:00",
+      opens: "09:00",
+      closes: "17:00",
     },
-    { days: ["Saturday", "Sunday"], opens: "09:00", closes: "18:00" },
+    { days: ["Saturday"], opens: "09:00", closes: "12:00" },
   ],
 } as const;
 
@@ -133,14 +134,14 @@ export const images = {
 } as const;
 
 export const hero = {
-  eyebrow: "Zahnarztpraxis am Willy-Brandt-Platz, Augsburg",
-  title: "Zahnmedizin in Augsburg, die sich nach *Ihrem Alltag* richtet.",
+  eyebrow: "Ihre Zahnarztpraxis in Meitingen",
+  title: "Zahnmedizin in Meitingen\u00a0– *persönlich* und verständlich.",
   intro:
-    "Bei Elara Zahnmedizin nehmen wir uns Zeit für Ihre Fragen und besprechen jeden Schritt verständlich mit Ihnen. Und weil wir an sieben Tagen in der Woche für Sie da sind, findet sich ein Termin, der zu Ihnen passt.",
+    "Bei Elara Zahnmedizin nehmen wir uns Zeit für Ihre Fragen, erklären Befunde in klaren Worten und besprechen jede Behandlung gemeinsam mit Ihnen – von der Vorsorge bis zum Zahnersatz.",
   trustPoints: [
-    "Mo–Fr von 7 bis 21 Uhr",
-    "Auch am Wochenende & an Feiertagen",
-    "Am Willy-Brandt-Platz 1",
+    "Persönliche Beratung",
+    "Vorsorge bis Zahnersatz",
+    "Termin einfach anfragen",
   ],
 };
 
@@ -148,13 +149,13 @@ export const intro = {
   eyebrow: "Die Praxis",
   title: "Willkommen bei *Elara Zahnmedizin*",
   paragraphs: [
-    "Ein Zahnarztbesuch soll sich gut in Ihr Leben einfügen – nicht umgekehrt. Deshalb öffnen wir werktags schon um 7 Uhr, bleiben bis 21 Uhr und sind auch samstags, sonntags und an Feiertagen für Sie da.",
-    "In unserer hellen, ruhigen Praxis am Willy-Brandt-Platz erwartet Sie ein Team, das Ihnen zuhört. Wir erklären Befunde in verständlichen Worten, zeigen Ihnen die möglichen Wege auf und entscheiden gemeinsam mit Ihnen, wie es weitergeht.",
+    "Ein Zahnarztbesuch soll sich gut anfühlen. In unserer hellen, ruhigen Praxis in Meitingen erwartet Sie ein Team, das Ihnen zuhört und sich Zeit für Ihre Anliegen nimmt.",
+    "Wir erklären Befunde in verständlichen Worten, zeigen Ihnen die möglichen Wege auf und entscheiden gemeinsam mit Ihnen, wie es weitergeht – ohne Zeitdruck und ohne Fachchinesisch.",
   ],
   points: [
     "Verständliche Erklärungen statt Fachsprache",
     "Behandlungsschritte, die wir vorab mit Ihnen besprechen",
-    "Termine früh morgens, abends und am Wochenende",
+    "Vorsorge, Zahnerhaltung und Zahnersatz unter einem Dach",
   ],
   confirmed: false, // approach statements – please confirm wording with the practice
 };
@@ -277,19 +278,19 @@ export const services: Service[] = [
 
 export const reasons = {
   eyebrow: "Warum Elara Zahnmedizin",
-  title: "Zahnmedizin, die in *Ihren Kalender* passt.",
+  title: "Zahnmedizin, bei der *Sie* im Mittelpunkt stehen.",
   intro:
-    "Wir möchten, dass Sie Ihre Zahngesundheit nicht aufschieben müssen – weder wegen der Arbeit noch wegen des Wochenendes.",
+    "Gute Zahnmedizin beginnt mit Zuhören. Deshalb nehmen wir uns Zeit für Sie – vom ersten Gespräch bis zur Nachsorge.",
   items: [
     {
-      title: "Früh morgens und abends",
-      text: "Montag bis Freitag von 7 bis 21 Uhr – so lässt sich ein Termin vor oder nach der Arbeit leichter einplanen.",
-      confirmed: true,
+      title: "Persönliche Beratung",
+      text: "Wir erklären Befunde verständlich und besprechen jede Behandlung vorab gemeinsam mit Ihnen.",
+      confirmed: false, // approach statement – please confirm wording
     },
     {
-      title: "Wochenende und Feiertage",
-      text: "Samstags, sonntags und an Feiertagen sind wir von 9 bis 18 Uhr für Sie da.",
-      confirmed: true,
+      title: "Ruhige Atmosphäre",
+      text: "Helle, freundliche Räume, in denen Sie sich wohlfühlen und entspannt ankommen können.",
+      confirmed: false, // approach statement – please confirm wording
     },
     {
       title: "Viele Behandlungen unter einem Dach",
@@ -297,8 +298,8 @@ export const reasons = {
       confirmed: false, // depends on confirmed service list
     },
     {
-      title: "Mitten in Augsburg",
-      text: "Sie finden uns am Willy-Brandt-Platz 1 – mit der Routenplanung kommen Sie direkt zu uns.",
+      title: "Einfach Termin anfragen",
+      text: "Rufen Sie uns an oder senden Sie uns eine Anfrage über das Formular – wir melden uns zur Terminabstimmung.",
       confirmed: true,
     },
   ],
@@ -351,7 +352,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Wann ist die Praxis geöffnet?",
-    a: "Montag bis Freitag von 7:00 bis 21:00 Uhr, Samstag und Sonntag von 9:00 bis 18:00 Uhr sowie an Feiertagen von 9:00 bis 18:00 Uhr.",
+    a: "Montag bis Freitag von 9:00 bis 17:00 Uhr und Samstag von 9:00 bis 12:00 Uhr. Sonntags ist die Praxis geschlossen.",
     confirmed: true,
   },
   {
@@ -406,8 +407,7 @@ export const contact = {
     { value: "", label: "Keine Präferenz" },
     { value: "vormittags", label: "Vormittags" },
     { value: "nachmittags", label: "Nachmittags" },
-    { value: "abends", label: "Abends (ab 17 Uhr)" },
-    { value: "wochenende", label: "Am Wochenende" },
+    { value: "samstag", label: "Samstagvormittag" },
   ],
 };
 
@@ -425,7 +425,7 @@ export const testimonials = {
 };
 
 export const seo = {
-  title: "Elara Zahnmedizin – Zahnarzt in Augsburg | Termin vereinbaren",
+  title: "Elara Zahnmedizin – Zahnarzt in Meitingen | Termin vereinbaren",
   description:
-    "Zahnarztpraxis am Willy-Brandt-Platz in Augsburg: Prophylaxe, Zahnerhaltung, Zahnersatz, Implantate und mehr. Mo–Fr 7–21 Uhr, Sa–So & Feiertage 9–18 Uhr geöffnet.",
+    "Zahnarztpraxis in Meitingen: Prophylaxe, Zahnerhaltung, Zahnersatz, Implantate und mehr. Persönliche Beratung – Termin telefonisch oder online anfragen.",
 };

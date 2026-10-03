@@ -17,7 +17,7 @@ The page sections, in order:
 - Patient testimonials (see section 3).
 - Team.
 - FAQ accordion.
-- Contact section with phone, e-mail and the enquiry form. Address, opening hours and "Route planen" are in the hero card and footer.
+- Contact section with phone, e-mail, opening hours and the enquiry form. The address is in the hero card and footer, and "Route planen" is in the footer.
 - Footer.
 - On mobile, a bottom action bar with "Termin vereinbaren" and "Anrufen". It hides while the contact form is on screen so it never covers form fields.
 
@@ -84,7 +84,7 @@ Other wording to confirm:
 
 ## 3. Missing client information or integrations
 
-- **Contact details:** confirmed by the client for use on this site (phone, e-mail, address and opening hours as supplied).
+- **Contact details:** updated by the client: phone +49 152 342 736 71, e-mail info@landsberger-medienagentur.de, opening hours Mo–Fr 9–17, Sa 9–12, Sunday closed. The location changed to Meitingen, so the postcode is now 86405 (Meitingen's postcode). **The street "Willy-Brandt-Platz 1" was carried over from the Augsburg address. Please confirm the correct Meitingen street address**, because it drives the directions link and structured data.
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
 - **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
