@@ -31,7 +31,7 @@ export function Testimonials() {
                   </blockquote>
                   <figcaption className="mt-6 border-t border-line pt-4 text-sm">
                     <span className="font-bold text-navy-900">{t.name}</span>
-                    <span className="text-muted"> · {t.source}</span>
+                    {t.source && <span className="text-muted"> · {t.source}</span>}
                   </figcaption>
                 </figure>
               </li>
