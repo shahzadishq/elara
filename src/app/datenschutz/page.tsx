@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { LegalPlaceholder } from "@/components/LegalPlaceholder";
+import { LegalPage } from "@/components/LegalPage";
+import { datenschutz } from "@/content/legal";
 
-// TODO(launch): replace with the practice's approved Datenschutzerklärung text.
 export const metadata: Metadata = {
   title: "Datenschutzerklärung | Elara Zahnmedizin",
-  robots: { index: false, follow: true },
 };
 
 export default function Page() {
-  return <LegalPlaceholder title="Datenschutzerklärung" />;
+  return <LegalPage title="Datenschutzerklärung" sections={datenschutz} />;
 }

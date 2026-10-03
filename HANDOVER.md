@@ -14,7 +14,7 @@ The page sections, in order:
 - Services: 8 treatments as a card grid. The whole card links to the appointment form.
 - "So funktioniert's": a three-step scroll story. On desktop the image column stays pinned, and each step activates as it reaches the middle of the screen, cross-fading its photo and filling the progress line. On mobile each step shows its own photo.
 - Why Elara.
-- Patient testimonials (see section 3).
+- Patient testimonials: a swipeable carousel with previous/next buttons and dots, and no autoplay.
 - Team.
 - FAQ accordion.
 - Contact section with phone, e-mail, opening hours and the enquiry form. Opening hours also appear in the hero image card. The address and "Route planen" are in the footer.
@@ -86,7 +86,7 @@ Other wording to confirm:
 
 - **Contact details:** supplied by the client: Hauptstraße 56, 86405 Meitingen · phone +49 152 342 736 71 · info@landsberger-medienagentur.de · Mo–Fr 9–17, Sa 9–12, Sunday closed.
 - **Form delivery:** no endpoint or credentials were supplied. Set either the `RESEND_*` variables or `CONTACT_WEBHOOK_URL`.
-- **Impressum and Datenschutz:** no approved text was supplied. `/impressum` and `/datenschutz` currently show a clearly marked placeholder and are set to `noindex`. The privacy text in the form and in the consent banner also needs legal review against the final setup.
+- **Impressum and Datenschutz:** built from landsberger-medienagentur.de/impressum and /datenschutz (content in `src/content/legal.ts`). The Impressum is taken over as published and names Landsberger Medienagentur (Ioan Meyer) as provider. The Datenschutz text follows the source, but the parts describing the agency's own site were adapted to this site: hosting is GitHub Pages instead of IONOS, the newsletter and social-media sections are removed, and the cookie section states that no tracking cookies are set, fonts load locally, and Google Maps is reached only by clicking "Route planen". The Impressum still cites "§ 5 TMG"; the TMG was replaced by the DDG in May 2024. Have both texts legally reviewed, and update the hosting section when the site moves to its final host.
 - **Team:** no names, titles or biographies were supplied. The Team section shows the group photo with generic text only. To add people, fill in `team.members` in `site.ts`.
 - **Patient reviews:** five reviews supplied by the client (Alex B., Maria T., Michael R., Jennifer F., Richard S.) are shown. They are labelled as Google reviews and show a 5-star rating as supplied by the client. The stars are visual only: there is no review or rating structured data, because Google does not allow self-serving review markup.
 - **Booking URL:** none supplied, so every "Termin vereinbaren" button goes to the enquiry form. Set `NEXT_PUBLIC_BOOKING_URL` if an online booking tool exists (e.g. Doctolib).
@@ -129,7 +129,7 @@ Other wording to confirm:
 ## 5. Remaining launch blockers
 
 1. Configure form delivery (the contact form is built; it needs `RESEND_*` or `CONTACT_WEBHOOK_URL`) and send a real test enquiry to the practice inbox.
-2. Replace the placeholder Impressum and Datenschutz with approved legal texts, and have the form and consent wording reviewed.
+2. Have the Impressum and Datenschutz texts legally reviewed (see section 3), together with the form and consent wording. Update the Datenschutz hosting section when the site moves off GitHub Pages.
 3. Get the client to confirm the service list and the approach wording (section 2).
 4. Set `NEXT_PUBLIC_SITE_URL`, plus `NEXT_PUBLIC_GTM_ID` if tracking is wanted. Then set up the Ads conversions in GTM.
 

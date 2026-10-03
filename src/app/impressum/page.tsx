@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { LegalPlaceholder } from "@/components/LegalPlaceholder";
+import { LegalPage } from "@/components/LegalPage";
+import { impressum } from "@/content/legal";
 
-// TODO(launch): replace with the practice's approved Impressum text.
 export const metadata: Metadata = {
   title: "Impressum | Elara Zahnmedizin",
-  robots: { index: false, follow: true },
 };
 
 export default function Page() {
-  return <LegalPlaceholder title="Impressum" />;
+  return <LegalPage title="Impressum" sections={impressum} />;
 }
