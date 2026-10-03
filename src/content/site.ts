@@ -420,22 +420,25 @@ export const contact = {
 export const testimonials = {
   eyebrow: "Stimmen unserer Patienten",
   title: "Was unsere Patientinnen und Patienten *sagen*.",
-  // Supplied by the client. Add `source` (e.g. "Google") once known.
+  // Supplied by the client (Google reviews).
   items: [
     {
       quote:
         "Sehr nette Zahnärzte machen ihre Arbeit sehr gut und nehmen sich ebenfalls Zeit für die Patienten, mitarbeiten ebenfalls auch sehr nett. Kann man nur weiter empfehlen werde dort weiterhin bleiben.",
       name: "Alex B.",
+      source: "Google",
     },
     {
       quote:
         "Kompetenter und einfühlsamer Arzt, der sich immer ausreichend Zeit für mich nimmt. Freundliches Praxisteam, moderne Räume und super Organisation, Wartezeit meist max. 5 Minuten.",
       name: "Maria T.",
+      source: "Google",
     },
     {
       quote:
         "Sehr herzlich und top Leistung. Man fühlt sich aufgehoben und wird immer freundlich empfangen, sowohl in der Praxis als auch am Telefon. Einfach rundum ein Top Service! Macht weiter so.",
       name: "Michael R.",
+      source: "Google",
     },
   ] as { quote: string; name: string; source?: string }[],
 };
