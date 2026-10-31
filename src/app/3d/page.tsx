@@ -275,11 +275,15 @@ function Process3D() {
 
 function CtaBand() {
   return (
-    <section className="x3-cta" aria-labelledby="x3-cta-title">
+    <section className="x3-cta" aria-labelledby="x3-cta-title" data-parallax>
       <div className="x3-cta-ring" aria-hidden="true">
-        <span />
-        <span />
-        <span />
+        <div className="x3-cta-gyro">
+          <span />
+          <span />
+          <span />
+          <span />
+          <i className="x3-cta-core" />
+        </div>
       </div>
       <div className="x3-wrap x3-cta-inner" data-reveal>
         <h2 id="x3-cta-title" className="x3-h2 x3-h2--light">
