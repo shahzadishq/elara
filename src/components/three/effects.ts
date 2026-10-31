@@ -196,7 +196,39 @@ export function initProgress(): () => void {
   };
 }
 
+/** Sections with [data-parallax] get --px/--py (-1..1) from the pointer position over them. */
+export function initParallax(root: ParentNode): () => void {
+  if (reducedMotion() || !finePointer()) return () => {};
+  const els = Array.from(root.querySelectorAll<HTMLElement>("[data-parallax]"));
+  const offs = els.map((el) => {
+    let raf = 0;
+    const move = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 2 - 1;
+      const y = ((e.clientY - r.top) / r.height) * 2 - 1;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        el.style.setProperty("--px", x.toFixed(3));
+        el.style.setProperty("--py", y.toFixed(3));
+      });
+    };
+    const leave = () => {
+      cancelAnimationFrame(raf);
+      el.style.setProperty("--px", "0");
+      el.style.setProperty("--py", "0");
+    };
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerleave", leave);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerleave", leave);
+    };
+  });
+  return () => offs.forEach((off) => off());
+}
+
 export function initEffects(root: ParentNode = document): () => void {
-  const offs = [initTilt(root), initReveal(root), initCarousel(root), initProgress()];
+  const offs = [initTilt(root), initReveal(root), initCarousel(root), initParallax(root), initProgress()];
   return () => offs.forEach((off) => off());
 }
