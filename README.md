@@ -20,6 +20,20 @@ npm run lint
 | Analytics hooks + consent | `src/lib/analytics.ts`, `src/components/ConsentManager.tsx`, `src/components/AnalyticsListener.tsx` |
 | Impressum / Datenschutz text | `src/content/legal.ts` (pages in `src/app/impressum`, `src/app/datenschutz`) |
 | Images | `public/images/` |
+| 3D showcase page (`/3d`) | `src/app/3d/page.tsx`, `src/app/3d/three-d.css`, `src/components/three/` |
+| three.js (vendored custom build, MIT) | `src/vendor/three/` |
+
+## 3D page
+
+`/3d` is a separate, eye-catching version of the landing page (the classic page at `/` is unchanged):
+a WebGL tooth in the hero that follows the mouse and turns while scrolling, 3D tilt cards for the
+services, a rotating 3D photo carousel, extruded step numbers and scroll-in animations. It reuses the
+content from `src/content/site.ts` and the real contact form. three.js is only loaded on this page.
+Visitors with "reduce motion" get a still scene; without WebGL the page still works (no tooth).
+The page is set to `noindex` so the classic page stays the one search engines show.
+
+To rebuild the vendored three.js file (e.g. after adding a class to the scene), bundle the needed
+exports from `three/build/three.module.js` with esbuild (`--bundle --format=esm --minify`).
 
 ## Deployment
 
